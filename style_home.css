@@ -6,14 +6,28 @@
 body{
     background-image: url(images/wallpaper.png);
     font-family: my-font;
+    color: rgba(0, 64, 184, 0.692)
 }
 
 #container{
     background-color: rgba(255, 255, 255, 0.363);
+    border-radius: 30%;
     height: 500px;
     text-align: center;
-    width: 70%;
+    width: 800px;
     margin:auto;
     margin-top: 150px;
+}
+
+#container a{
+    font-size: 25px;
+    background-color: rgba(42, 114, 209, 0.692);
+    color: lightblue;
+    padding: 5px;
+    border-radius: 10%;
+}
+
+#container a:hover{
+    color:rgb(72, 193, 233)
 }
 
