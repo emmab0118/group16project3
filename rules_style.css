@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+@font-face{
+    font-family: my-font;
+    src: url("images/Minecraft.ttf");
+}
+
+body{
+    background-color: rgb(94, 145, 254);
+    font-family: my-font;
+    
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: #3f79cffa;
+}
+
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+
+.navbar a:hover{
+    background-color: rgb(35, 77, 139);
+}
+
+<
+
+
