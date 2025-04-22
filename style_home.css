@@ -1,0 +1,17 @@
+@font-face{
+    font-family: my-font;
+    src: url("Minecraft.ttf");
+}
+
+body{
+    background-image: url(wallpaper.png);
+    font-family: my-font;
+    text-align: center;
+    
+}
+
+#container{
+    background-color: white;
+
+}
+
