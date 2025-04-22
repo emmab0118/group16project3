@@ -1,8 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-}
+
 @font-face{
     font-family: my-font;
     src: url("images/Minecraft.ttf");
@@ -33,6 +29,5 @@ body{
     background-color: rgb(35, 77, 139);
 }
 
-<
 
 
