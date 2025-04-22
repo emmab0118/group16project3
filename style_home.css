@@ -1,10 +1,10 @@
 @font-face{
     font-family: my-font;
-    src: url("Minecraft.ttf");
+    src: url("images/Minecraft.ttf");
 }
 
 body{
-    background-image: url(wallpaper.png);
+    background-image: url(images/wallpaper.png);
     font-family: my-font;
     text-align: center;
     
