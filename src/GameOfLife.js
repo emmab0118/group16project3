@@ -1,8 +1,8 @@
 import React, { useState, useRef, useCallback } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const numRows = 10;
-const numCols = 20;
+const numRows = 50;
+const numCols = 50;
 
 // Creates Empty Grid
 const generateEmptyGrid = () =>
@@ -16,11 +16,10 @@ const countLiveNeighbors = (grid, x, y) => {
     for (let i = -1; i <= 1; i++) {
         for (let j = -1; j <= 1; j++) {
             if (i === 0 && j === 0) continue; // Skips home cell
-            const row = x + i;
-            const col = y + j;
-            if (row >= 0 && row < numRows && col >= 0 && col < numCols) { // Prevents checking out of bound
-                count += grid[row][col];
-            }
+            // Cells wrap around if they go off screen
+            const row = (x + i + numRows) % numRows;
+            const col = (y + j + numCols) % numCols;
+            count += grid[row][col];
         }
     }
     return count;
