@@ -81,9 +81,7 @@ const GameOfLife = () => {
   
     return (
       <div className="container py-4">
-        <h2 className="mb-3">Conway's Game of Life</h2>
-  
-        <div className="d-flex gap-2 mb-3 align-items-center flex-wrap">
+        <div className="d-flex gap-2 mb-3 align-items-center flex-wrap justify-content-center">
           <button className="btn btn-success" onClick={() => {
             setRunning(!running);
             if (!running) {
@@ -104,28 +102,24 @@ const GameOfLife = () => {
           <span className="ms-3 fw-bold">Generation: {generation}</span>
         </div>
   
-    <div className="d-flex justify-content-center">
-        <div
-            className="d-grid"
-            style={{
-            gridTemplateColumns: `repeat(${numCols}, 20px)`
-            }}
-        >
+        <div className="d-flex justify-content-center">
+          <div className="d-grid" style={{gridTemplateColumns: `repeat(${numCols}, 20px)`}}>
             {grid.map((row, i) =>
-            row.map((cell, j) => (
-                <div
-                key={`${i}-${j}`}
-                onClick={() => toggleCell(i, j)}
-                style={{
+              row.map((cell, j) => (
+                <img
+                  key={`${i}-${j}`}
+                  src={cell ? '/images/clipart-guy.png' : '/images/minecraft.png'}
+                  alt={cell ? 'Alive Cell' : 'Dead Cell'}
+                  onClick={() => toggleCell(i, j)}
+                  style={{
                     width: 20,
                     height: 20,
-                    backgroundColor: cell ? 'black' : 'lightgray',
                     border: '1px solid #ccc',
-                }}
+                  }}
                 />
-            ))
+              ))
             )}
-        </div>
+          </div>
         </div>
     </div>
     );
