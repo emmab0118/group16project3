@@ -1,0 +1,20 @@
+body{
+    background-image: url(images/wallpaper.png);
+    font-family: my-font;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.363);
+    height: 500px;
+    text-align: center;
+    width: 70%;
+    margin:auto;
+    flex-direction: column;
+}
+
+@font-face{
+    font-family: my-font;
+    src: url("images/Minecraft.ttf");
+
+}
+

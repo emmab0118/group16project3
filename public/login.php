@@ -14,35 +14,33 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-
 // Handling form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Capture user input
     $username = $conn->real_escape_string($_POST['username']);
-    $email = $conn->real_escape_string($_POST['email']);
     $password = $_POST['password'];
 
     // Validate input
-    if (empty($username) || empty($email) || empty($password)) {
-        echo "All fields are required!";
+    if (empty($username) || empty($password)) {
+        echo "Both fields are required!";
     } else {
-        // Hash the password for security
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-        // Check if username already exists
-        $check_query = "SELECT id FROM users WHERE username = '$username' OR email = '$email'";
+        // Check if the username exists
+        $check_query = "SELECT id, password FROM users WHERE username = '$username' LIMIT 1";
         $result = $conn->query($check_query);
 
         if ($result->num_rows > 0) {
-            echo "Username or Email already exists!";
-        } else {
-            // Insert new user into database
-            $insert_query = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$hashed_password')";
-            if ($conn->query($insert_query) === TRUE) {
-                echo "New user registered successfully!";
+            // Fetch user data
+            $row = $result->fetch_assoc();
+            $hashed_password = $row['password'];
+
+            // Verify the password
+            if (password_verify($password, $hashed_password)) {
+                echo "Login successful! Welcome, " . $username . ".";
             } else {
-                echo "Error: " . $insert_query . "<br>" . $conn->error;
+                echo "Invalid username or password.";
             }
+        } else {
+            echo "Username not found!";
         }
     }
 }
@@ -55,21 +53,23 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Registration</title>
+    <title>User Login</title>
+    <link rel="stylesheet" type="text/css" media="all" href="style_login.css">
+
 </head>
 <body>
-    <h2>User Registration</h2>
+    <h2>User Login</h2>
     <form method="POST" action="">
         <label for="username">Username:</label>
         <input type="text" name="username" id="username" required><br><br>
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required><br><br>
-
         <label for="password">Password:</label>
         <input type="password" name="password" id="password" required><br><br>
 
-        <button type="submit">Register</button>
+        <button type="submit">Login</button>
     </form>
+
+    <a href="signup.php">Register New Account</a>
+
 </body>
 </html>
