@@ -6,12 +6,14 @@ function Admin() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    axios.get('/users.php')
+    axios.get('/~aselke2/WP/PW/GameOfLife/build/users.php')
       .then(response => {
+        console.log(response.data);  
         if (response.data.error) {
           setError(response.data.error);
         } else {
-          setUsers(response.data);
+          // Set users only if response.data is an array
+          setUsers(Array.isArray(response.data) ? response.data : []);
         }
       })
       .catch(err => setError('Error fetching users'));
@@ -19,15 +21,28 @@ function Admin() {
 
   const handleDelete = (userId) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
-      axios.delete('/users.php', { data: { id: userId } })
-        .then(response => {
-          if (response.data.success) {
-            setUsers(users.filter(user => user.id !== userId));
-          }
-        })
-        .catch(err => setError('Error deleting user'));
+      axios.post('/~aselke2/WP/PW/GameOfLife/build/users.php', 
+        { action: 'delete', id: userId },
+        { headers: { 'Content-Type': 'application/json' } }
+      )
+      .then(response => {
+        if (response.data.success) {
+          setUsers(users.filter(user => user.id !== userId));
+        } else if (response.data.error) {
+          setError(response.data.error);
+        }
+      })
+      .catch(err => {
+        console.error('Error deleting user:', err);
+        if (err.response && err.response.data && err.response.data.error) {
+          setError(err.response.data.error);
+        } else {
+          setError('Error deleting user');
+        }
+      });
     }
   };
+  
 
   if (error) {
     return <div>{error}</div>;

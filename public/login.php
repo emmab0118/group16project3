@@ -35,16 +35,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Set session variables
                 $_SESSION['user_id'] = $row['id'];
                 $_SESSION['username'] = $username;
-
-                if($_SESSION['username'] == "admin"){
-                    header("Location: admin.html");
-                    exit();
-                }
-                else{
-                    // Redirect to game
-                    header("Location: index.html");
-                    exit();
-                }
+                
+                // Redirect to a dashboard or homepage
+                header("Location: index.html?data=" . urlencode($_SESSION['username']));
+                exit();
             } else {
                 echo "Invalid username or password.";
             }
