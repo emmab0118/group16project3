@@ -1,22 +1,20 @@
 <?php
+session_start();
+
 // Database connection
 $host = 'localhost'; 
 $user = 'aselke2';      
 $pass = 'aselke2';        
 $dbname = 'aselke2'; 
 
-// Create connection
 $conn = new mysqli($host, $user, $pass, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
-    echo "Could not connect to server\n";
     die("Connection failed: " . $conn->connect_error);
 }
 
 // Handling form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Capture user input
     $username = $conn->real_escape_string($_POST['username']);
     $password = $_POST['password'];
 
@@ -29,13 +27,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $conn->query($check_query);
 
         if ($result->num_rows > 0) {
-            // Fetch user data
             $row = $result->fetch_assoc();
             $hashed_password = $row['password'];
 
-            // Verify the password
+            // Verify password
             if (password_verify($password, $hashed_password)) {
-                echo "Login successful! Welcome, " . $username . ".";
+                // Set session variables
+                $_SESSION['user_id'] = $row['id'];
+                $_SESSION['username'] = $username;
+                
+                // Redirect to a dashboard or homepage
+                header("Location: ../build/index.html");
+                exit();
             } else {
                 echo "Invalid username or password.";
             }
@@ -54,8 +57,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login</title>
-    <link rel="stylesheet" type="text/css" media="all" href="style_login.css">
-
+    <link rel="stylesheet" href="style_login.css">
 </head>
 <body>
     <h2>User Login</h2>
@@ -70,6 +72,5 @@ $conn->close();
     </form>
 
     <a href="signup.php">Register New Account</a>
-
 </body>
 </html>

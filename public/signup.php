@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Database connection
 $host = 'localhost'; 
 $user = 'aselke2';      
@@ -40,6 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $insert_query = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$hashed_password')";
             if ($conn->query($insert_query) === TRUE) {
                 echo "New user registered successfully!";
+                header("Location: ../build/index.html");
             } else {
                 echo "Error: " . $insert_query . "<br>" . $conn->error;
             }
