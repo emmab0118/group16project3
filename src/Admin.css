@@ -1,0 +1,14 @@
+@font-face{
+    font-family: my-font;
+    src: url("../public/images/Minecraft.ttf");
+}
+
+body{
+    background-image: url(../public/images/wallpaper.png);
+    font-family: my-font;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
