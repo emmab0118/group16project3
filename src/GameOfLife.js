@@ -117,7 +117,7 @@ const GameOfLife = ({ numRows = 50, numCols = 50, onSetSize = () => {} }) => {
             row.map((cell, j) => (
               <img
                 key={`${i}-${j}`}
-                src={cell ? '/images/clipart-guy.png' : '/images/minecraft.png'}
+                src={cell ? '/~aselke2/WP/PW/GameOfLife/build/images/clipart-guy.png' : '/~aselke2/WP/PW/GameOfLife/build/images/minecraft.png'}
                 alt={cell ? 'Alive Cell' : 'Dead Cell'}
                 onClick={() => toggleCell(i, j)}
                 style={{
