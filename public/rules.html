@@ -16,6 +16,38 @@
         <a href = "#">Scoreboard</a>
     </div>
 
+    <h1>How to Play Conway's Game of Life</h1>
+
+    <p>Conway's Game of Life is a cellular automaton devised by mathematician John Horton Conway in 1970. It's a zero-player game, meaning its evolution is determined by its initial state and does not require further input from humans.</p>
+    
+    <h2 id="rules">The Rules</h2>
+    
+    <p>Game of Life is an infinite two-dimensional grid of square cells, each of which is in one of two possible states: alive or dead. Every cell interacts with its eight neighbors, which are the cells that are horizontally, vertically, or diagonally adjacent. At each step in time, the following transitions occur:</p>
+    
+    <div class="rule">
+        <strong>1. Underpopulation:</strong> Any live cell with fewer than two live neighbors dies (as if by underpopulation).
+    </div>
+    
+    <div class="rule">
+        <strong>2. Survival:</strong> Any live cell with two or three live neighbors lives on to the next generation.
+    </div>
+    
+    <div class="rule">
+        <strong>3. Overpopulation:</strong> Any live cell with more than three live neighbors dies (as if by overpopulation).
+    </div>
+    
+    <div class="rule">
+        <strong>4. Reproduction:</strong> Any dead cell with exactly three live neighbors becomes a live cell (as if by reproduction).
+    </div>
+    <br>
+    <h2 id="controls">Game Controls</h2>
+    
+    <div class="controls">
+        <p><strong>Start/Pause:</strong> Begins or pauses the simulation</p>
+        <p><strong>Step:</strong> Advances the simulation by one generation</p>
+        <p><strong>Clear:</strong> Resets the grid</p>
+        <p><strong>Grid Size:</strong> Changes the dimensions of the grid</p>
+    </div>
 
     <img src = "images/mario.png" style = "bottom: 0px; position: absolute; right: 0px;">
 </body>
