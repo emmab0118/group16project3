@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import './App.css';
 import GameOfLife from './GameOfLife';
 import Admin from './Admin';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  const [username, setMessage] = useState('');
+ 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const username = params.get('data'); 
+    if (username) {
+      setMessage(username);
+  }
+ 
+
+  }, []);
   const [dimensions, setDimensions] = useState({ numRows: 20, numCols: 20 });
   const [presetCells, setPresetCells] = useState([]);
   const [showModal, setShowModal] = useState(false);
