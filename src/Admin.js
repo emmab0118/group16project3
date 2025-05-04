@@ -59,6 +59,7 @@ function Admin() {
             <th>Username</th>
             <th>Email</th>
             <th>Password Hash</th>
+            <th>Created On</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -69,6 +70,7 @@ function Admin() {
               <td>{user.username}</td>
               <td>{user.email}</td>
               <td>{user.password}</td>
+              <td>{user.created_at}</td>
               <td>
                 <button onClick={() => handleDelete(user.id)}>Delete</button>
               </td>
@@ -76,6 +78,7 @@ function Admin() {
           ))}
         </tbody>
       </table>
+      <a href="home.html" class="home">Home</a>
     </div>
   );
 }
