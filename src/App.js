@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import GameOfLife from './GameOfLife';
+import Admin from './Admin';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
