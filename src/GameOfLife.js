@@ -86,7 +86,7 @@ const GameOfLife = ({ numRows = 20, numCols = 20, onSetSize = () => {}, presetCe
     if (!runningRef.current) return;
     setGrid(prev => createNextGrid(prev, numRows, numCols));
     setGeneration(prev => prev + 1);
-    setTimeout(runSimulation, 100);
+    setTimeout(runSimulation, 200);
   }, [numRows, numCols]);
 
   const run23 = () => {
@@ -98,6 +98,7 @@ const GameOfLife = ({ numRows = 20, numCols = 20, onSetSize = () => {}, presetCe
     setGeneration(prev => prev + 23);
   };
 
+  // Toggle cell state
   const toggleCell = (i, j) => {
     const newGrid = grid.map(row => [...row]);
     newGrid[i][j] = grid[i][j] ? 0 : 1;
