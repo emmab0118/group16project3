@@ -58,19 +58,28 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login</title>
     <link rel="stylesheet" href="style_login.css">
+    <link rel="icon" href="./images/freddy.webp" />
 </head>
 <body>
-    <h2>User Login</h2>
-    <form method="POST" action="">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" required><br><br>
+    <div class="navbar">
+        <a href="home.html">Home</a>
+        <a href = "index.html">Game</a>
+        <a href = "login.php">Log In</a>
+        <a href = "signup.php">Sign Up</a>
+    </div>
+    <div class="login">
+        <h2>User Login</h2>
+        <form method="POST" action="">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required><br><br>
 
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required><br><br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required><br><br>
 
-        <button type="submit">Login</button>
-    </form>
+            <button type="submit">Login</button>
+        </form>
 
-    <a href="signup.php">Register New Account</a>
+        <a href="signup.php">Register New Account</a>
+    </div>
 </body>
 </html>

@@ -60,22 +60,32 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Registration</title>
     <link rel="stylesheet" type="text/css" media="all" href="style_login.css">
+    <link rel="icon" href="./images/freddy.webp" />
+
 </head>
 <body>
-    <h2>User Registration</h2>
-    <form method="POST" action="">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" required><br><br>
+    <div class="navbar">
+        <a href="home.html">Home</a>
+        <a href = "index.html">Game</a>
+        <a href = "login.php">Log In</a>
+        <a href = "signup.php">Sign Up</a>
+    </div>
+    <div class="login">
+        <h2>User Registration</h2>
+        <form method="POST" action="">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required><br><br>
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required><br><br>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required><br><br>
 
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required><br><br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required><br><br>
 
-        <button type="submit">Register</button>
-    </form>
+            <button type="submit">Register</button>
+        </form>
 
-    <a href="login.php">Already have an account? Log In</a>
+        <a href="login.php">Already have an account? Log In</a>
+    </div>
 </body>
 </html>
