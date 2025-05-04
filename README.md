@@ -5,4 +5,4 @@ For our project, we created a playable version of the Conway's Game of Life simu
 
 Game playable [here](https://codd.cs.gsu.edu/~aselke2/WP/PW/GameOfLife/build/home.html) 
 
-Presentation available [here](youtube.com)
+Presentation available [here](https://youtu.be/T4j-B3D-n8I)
