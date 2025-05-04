@@ -35,7 +35,7 @@ const createNextGrid = (grid, numRows, numCols) => {
   return newGrid;
 };
 
-const GameOfLife = ({ numRows = 50, numCols = 50, onSetSize = () => {} }) => {
+const GameOfLife = ({ numRows = 50, numCols = 50, onSetSize = () => {}, presetCells = [] }) => {
   const generateEmptyGrid = () =>
     Array.from({ length: numRows }, () =>
       Array.from({ length: numCols }, () => 0)
@@ -47,16 +47,36 @@ const GameOfLife = ({ numRows = 50, numCols = 50, onSetSize = () => {} }) => {
   const runningRef = useRef(running);
   runningRef.current = running;
 
+  useEffect(() => {
+    if (presetCells.length === 0) {
+      const generateEmptyGrid = () =>
+        Array.from({ length: numRows }, () =>
+          Array.from({ length: numCols }, () => 0)
+        );
+  
+      setGrid(generateEmptyGrid());
+      setGeneration(0);
+    }
+  }, [numRows, numCols, presetCells]);
+
+
   // Reset grid when size changes
   useEffect(() => {
-    const generateEmptyGrid = () =>
-      Array.from({ length: numRows }, () =>
+    if (presetCells.length > 0) {
+      const newGrid = Array.from({ length: numRows }, () =>
         Array.from({ length: numCols }, () => 0)
       );
+      presetCells.forEach(([i, j]) => {
+        if (i < numRows && j < numCols) {
+          newGrid[i][j] = 1;
+        }
+      });
+      setGrid(newGrid);
+      setGeneration(0);
+    }
+  }, [presetCells, numRows, numCols]);;
+
   
-    setGrid(generateEmptyGrid());
-    setGeneration(0);
-  }, [numRows, numCols]);
 
   // Main loop
   const runSimulation = useCallback(() => {
