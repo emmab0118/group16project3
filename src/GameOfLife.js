@@ -7,9 +7,10 @@ const countLiveNeighbors = (grid, x, y, numRows, numCols) => {
   for (let i = -1; i <= 1; i++) {
     for (let j = -1; j <= 1; j++) {
       if (i === 0 && j === 0) continue;
+      // Wraps around edge
       const row = (x + i + numRows) % numRows;
       const col = (y + j + numCols) % numCols;
-      count += grid[row][col];
+      count += grid[row][col]; // count neighbor if alive
     }
   }
   return count;
@@ -35,7 +36,7 @@ const createNextGrid = (grid, numRows, numCols) => {
   return newGrid;
 };
 
-const GameOfLife = ({ numRows = 50, numCols = 50, onSetSize = () => {}, presetCells = [] }) => {
+const GameOfLife = ({ numRows = 20, numCols = 20, onSetSize = () => {}, presetCells = [] }) => {
   const generateEmptyGrid = () =>
     Array.from({ length: numRows }, () =>
       Array.from({ length: numCols }, () => 0)
@@ -46,7 +47,8 @@ const GameOfLife = ({ numRows = 50, numCols = 50, onSetSize = () => {}, presetCe
   const [generation, setGeneration] = useState(0);
   const runningRef = useRef(running);
   runningRef.current = running;
-
+  
+  // Clear grid if no preset cells are provided
   useEffect(() => {
     if (presetCells.length === 0) {
       const generateEmptyGrid = () =>
@@ -60,12 +62,13 @@ const GameOfLife = ({ numRows = 50, numCols = 50, onSetSize = () => {}, presetCe
   }, [numRows, numCols, presetCells]);
 
 
-  // Reset grid when size changes
+  // Load preset pattern into grid
   useEffect(() => {
     if (presetCells.length > 0) {
       const newGrid = Array.from({ length: numRows }, () =>
         Array.from({ length: numCols }, () => 0)
       );
+      // Alive cells from the preset list
       presetCells.forEach(([i, j]) => {
         if (i < numRows && j < numCols) {
           newGrid[i][j] = 1;
@@ -95,6 +98,7 @@ const GameOfLife = ({ numRows = 50, numCols = 50, onSetSize = () => {}, presetCe
     setGeneration(prev => prev + 23);
   };
 
+  // Toggle cell state
   const toggleCell = (i, j) => {
     const newGrid = grid.map(row => [...row]);
     newGrid[i][j] = grid[i][j] ? 0 : 1;

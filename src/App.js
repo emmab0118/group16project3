@@ -132,7 +132,7 @@ function App() {
                         type="number"
                         className="form-control"
                         value={inputRows}
-                        onChange={(e) => setInputRows(parseInt(e.target.value))}
+                        onChange={(event) => setInputRows(parseInt(event.target.value))}
                     />
                     </div>
                     <div>
@@ -141,7 +141,7 @@ function App() {
                         type="number"
                         className="form-control"
                         value={inputCols}
-                        onChange={(e) => setInputCols(parseInt(e.target.value))}
+                        onChange={(event) => setInputCols(parseInt(event.target.value))}
                     />
                     </div>
                 </div>
