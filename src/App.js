@@ -72,6 +72,13 @@ function App() {
     }
   };
 
+  if(username === "admin"){
+    return(
+      <Admin></Admin>
+    );
+  }
+  else{
+
     return (
         <div className="App min-vh-100 min-vw-100 bg-dark text-white d-flex flex-column">
             <main className="container mt-4 py-3 bg-dark text-white">
@@ -136,6 +143,7 @@ function App() {
       )}
     </div>
   );
+}
 }
 
 export default App;
